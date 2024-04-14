@@ -70,3 +70,31 @@ If you have any issues and need assistance send me a message or post something o
 Discord: WanderingEye#0330
 Forum: https://www.unknowncheats.me/forum/usercp.php
 
+How to export a YOLOv5 model to Onnx (The Gatherer 2.0)
+Set up
+[ ]
+!git clone https://github.com/ultralytics/yolov5  # clone
+%cd yolov5
+%pip install -r requirements.txt  # install
+%pip install onnx
+
+import torch
+import utils
+display = utils.notebook_init()  # checks
+Exporting the model
+Here we need to upload our yolov5.pt model to the Colab runtime and our custom.yaml file containing the information of the classes of the model.
+
+IMPORTANT: wait until the files are fully uploaded befor doing the next step.
+This is a simple example of a yaml file:
+
+# Classes
+nc: 1  # number of classes
+names: ['rock']  # class names
+1.PNG 2.PNG
+
+Now you can rename the "custom.yaml" and "custom_yolov5.pt" to the names of your custom files and run the command.
+
+[ ]
+!python export.py --data /content/custom.yaml --weights /content/custom_yolov5.pt --include onnx
+Once it's done you can download the custom_yolov5.onnx file.
+
